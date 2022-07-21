@@ -31,13 +31,13 @@ class PostController extends Controller
     {
         $input = $request->all();
         $input['user_id'] = Auth::id();
-        $file = $request->file('media_url');
         $request->validate([
             'body' => 'required',
         ]);
+        $file = $request->file('media_url');
+        $input['media_url'] = 'media/post/'.$file->getClientOriginalName();
         Post::create($input);
         $file->move('media/post',$file->getClientOriginalName());
-        $input['media_url'] = 'media/post/'.$file->getClientOriginalName();
         return redirect()->route('posts.index');
     }
     /**

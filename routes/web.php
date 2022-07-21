@@ -27,5 +27,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::resource('posts', '\App\Http\Controllers\PostController');
+    Route::resource('profiles', '\App\Http\Controllers\UserController');
     Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
 });
