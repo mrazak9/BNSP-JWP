@@ -1,0 +1,24 @@
+1. Installasi Volatility
+	sudo snap install volatility-phocean
+2. cek apakah installasi berhasil
+	volatility -h
+3. cek profil dari image memory
+	volatility -f xp-laptop-2005-06-25.img imageinfo
+4. menjalankan analisa volatility
+	volatility -f xp-laptop-2005-06-25.img 
+	--profile=WinXPSP2x86 <<fungsi>>
+
+
+PROSES EKTRAKSI PASSWORD PADA RAM
+1. cek profile dari image memory
+	volatility -f xp-laptop-2005-07-04-1430.img imageinfo
+2. informasi alamat hive dari NATUSER
+	volatility -f xp-laptop-2005-07-04-1430.img --profile=
+	WinXPSP2x86 hashlist
+3. ambil nilail hash pada SAM dan system
+	volatility -f xxp-laptop-2005-07-04-1430.img --profile=
+	WinXPSP2x86 hashdump -y 0xe1035b60 
+	-s 0xe165cb60 > xp-password
+4. gunakan john the ripper untuk melakukan cracking hash
+	sudo apt install john-the-ripper
+	john xp-password.txt
