@@ -28,5 +28,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('posts', '\App\Http\Controllers\PostController');
     Route::resource('profiles', '\App\Http\Controllers\UserController');
+    Route::get('posts/edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
+    Route::post('posts/update/{id}', [PostController::class, 'update'])->name('posts.update');
     Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
 });

@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="text-center text-primary">My Post</h3>
+                    <h3 class="text-center text-primary">View Post</h3>
                     <hr />
                     <p>
                         {{ $post->user->name }}
@@ -15,7 +15,12 @@
                     <p>
                         {{ $post->created_at }}
                     </p>
-                    {{-- <img src="{{ url($post->media_file) }}" alt=""> --}}
+                    <img src="{{ url($post->media_url) }}" alt="" style="max-width: 30%">
+                    <br>
+                    @if ($post->user_id == Auth::user()->id)
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-block">Edit Post</a>
+                    @endif
+
                     <hr />
                     <h4>Display Comments</h4>
 
