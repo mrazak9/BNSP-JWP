@@ -8,10 +8,10 @@
                 <div class="card-body">
                     <h3 class="text-center text-primary">My Profile</h3>
                     <hr />
+                    <img  class="rounded-circle" src="{{ url($profile->avatar) }}" alt="">
                     <p> <strong>Nama:</strong> {{ $profile->name }}</p>
                     <p> <strong>Email:</strong> {{ $profile->email }}</p>
                     <p> <strong>Email:</strong> {{ $profile->avatar }}</p>
-                    <img  class="rounded-circle" src="{{ url($profile->avatar) }}" alt="">
                     {{-- {{url('/images/myimage.jpg')}} --}}
 
                     <hr />

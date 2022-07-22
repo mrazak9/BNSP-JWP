@@ -9,13 +9,19 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    /**
+     * Menampilkan Seluruh Data User
+     *
+     * @return string
+    */
     public function index()
     {
         $profiles = User::with('profiles')->find(Auth::id())->get();
         return view('profile.index',compact('profiles'));
     }
     /**
-     * Write Your Code..
+     * Menampilkan Form Create User
      *
      * @return string
     */
@@ -23,20 +29,35 @@ class UserController extends Controller
     {
         return view('profile.create');
     }
+
     /**
-     * Write Your Code..
+     * Menampilkan Data User berdasarkan ID
      *
      * @return string
     */
-
     public function show($id)
     {
         $profile = User::where('id',$id)->first();
-        // return $profile;
         return view('profile.show',compact('profile'));
     }
 
-    public function edit($userId, Request $request)
+     /**
+     * Menampilan Data User yang akan di edit berdasarkan ID
+     *
+     * @return string
+    */
+    public function edit($id)
+    {
+        $profile = User::find($id);
+        return view('profile.edit',compact('profile'));
+    }
+
+    /**
+     * Menampilkan Form Edit User
+     *
+     * @return string
+    */
+    public function update($userId, Request $request)
     {
         // mapping request data
         $data = $request->all();

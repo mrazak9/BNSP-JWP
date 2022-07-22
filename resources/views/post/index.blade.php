@@ -18,7 +18,7 @@
                 <tr>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->body }}</td>
-                    <td>{{ $comment }}</td>
+                    <td>{{ $post->comments->count()}}</td>
                     <td>
                         <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary btn-sm"><i> view</i></a>
                     </td>

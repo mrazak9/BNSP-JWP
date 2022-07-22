@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('posts', '\App\Http\Controllers\PostController');
     Route::resource('profiles', '\App\Http\Controllers\UserController');
+    Route::get('profiles/edit/{id}', [UserController::class, 'edit'])->name('profiles.edit');
+    Route::post('profiles/update/{id}', [UserController::class, 'update'])->name('profiles.update');
     Route::get('posts/edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
     Route::post('posts/update/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::get('posts/destroy/{id}', [PostController::class, 'destroy'])->name('posts.delete');
     Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::get('comments/edit/{id}', [CommentController::class, 'edit'])->name('comments.edit');
+    Route::post('comments/update/{id}', [CommentController::class, 'update'])->name('comments.update');
+    Route::post('comments/destroy/{id}', [CommentController::class, 'destroy'])->name('comments.delete');
 });

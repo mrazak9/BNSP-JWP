@@ -3,6 +3,13 @@
         <strong>{{ $comment->user->name }}</strong>
         <p>{{ $comment->body }}</p>
         <p>Date: {{ $comment->created_at }}</p>
+        @if ($comment->user_id == Auth::user()->id)
+            <div class="float-right">
+                <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="{{ route('comments.delete', $comment->id) }}" class="btn btn-danger btn-sm"
+                    onclick="return confirm('Are you sure want to deletes this data ?')">Delete</a>
+            </div>
+        @endif
         <hr />
         @if ($comment->parent_id == null)
             <form method="post" action="{{ route('comments.store') }}">
