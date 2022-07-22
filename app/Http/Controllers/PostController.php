@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::get();
-        return view('post.index',compact('posts'));
+        $comment = Comment::groupBy('post_id')->count();
+        return view('post.index',compact('posts','comment'));
     }
     /**
      * Write Your Code..
@@ -48,6 +50,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+
         return view('post.show',compact('post'));
     }
 }

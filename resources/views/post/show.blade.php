@@ -15,6 +15,7 @@
                     <p>
                         {{ $post->created_at }}
                     </p>
+                    {{-- <img src="{{ url($post->media_file) }}" alt=""> --}}
                     <hr />
                     <h4>Display Comments</h4>
 

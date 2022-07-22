@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <a href="{{ route('posts.index') }}" class="btn btn-primary btn-block">View Posts</a>
                 </div>
             </div>
         </div>

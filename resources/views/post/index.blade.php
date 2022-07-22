@@ -5,11 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <h4>Manage Posts</h4>
-            <a href="{{ route('posts.create') }}" class="btn btn-success btn-sm mb-2" style="float: right"><i class="fas fa-plus"></i></a>
+            <a href="{{ route('posts.create') }}" class="btn btn-success btn-sm mb-2" style="float: right"><i>Add Post</i></a>
             <table class="table table-bordered table-hover">
                 <thead>
                     <th width="80px">Id</th>
                     <th>Post</th>
+                    <th>Comment</th>
                     <th width="150px">Action</th>
                 </thead>
                 <tbody>
@@ -17,6 +18,7 @@
                 <tr>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->body }}</td>
+                    <td>{{ $comment }}</td>
                     <td>
                         <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary btn-sm"><i> view</i></a>
                     </td>

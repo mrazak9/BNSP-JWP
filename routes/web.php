@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
 
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
 
     Route::resource('posts', '\App\Http\Controllers\PostController');
     Route::resource('profiles', '\App\Http\Controllers\UserController');

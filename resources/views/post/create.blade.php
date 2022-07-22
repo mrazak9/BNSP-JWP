@@ -17,7 +17,7 @@
                         </div>
                         <div class="form-group">
                             <label class="label">Pilih File: </label>
-                            <input  name="media_url" type="file" class="form-control" id="media_url" />
+                            <input  name="media_url" type="file" class="form-control" id="media_url" accept=".jpg,.png" />
                         </div>
                         <div class="form-group text-center">
                             <input type="submit" class="btn btn-success" />
