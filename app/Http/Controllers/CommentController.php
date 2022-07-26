@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -21,7 +22,17 @@ class CommentController extends Controller
         ]);
         $input['user_id'] = auth()->user()->id;
         // return $comment;
-        Comment::create($input);
+        $save = Comment::create($input);
+        $hashtag_string = $request->body;
+        $str = $hashtag_string;
+        preg_match_all('/#(\w+)/', $str, $matches);
+        foreach ($matches[1] as $hashtag_name) {
+            $hashtag = new Tag();
+            $hashtag->value = $hashtag_name;
+            $hashtag->comment_id = $save->id;
+            $hashtag->post_id = $save->post_id;
+            $hashtag->save();
+        }
         return back();
     }
 

@@ -18,8 +18,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::get();
+        $tags = Tag::get();
         // $comment = Comment::groupBy('post_id')->count();
-        return view('post.index', compact('posts'));
+        return view('post.index', compact('posts','tags'));
     }
     /**
      * Menampilkan Form Create Post
@@ -110,5 +111,24 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->delete();
         return redirect()->route('posts.index');
+    }
+
+    // mengambil data dari table post sesuai pencarian data
+    public function cari(Request $request)
+    {
+        return $request->all();
+        $tags = Tag::get();
+        $cari = $request->cari;
+        $posts = Post::with('Tag')->whereHas('Tags', function ($query) use ($cari) {
+            return $query->where('id', $cari );
+        })->paginate(10);
+
+        // return $users;
+        if ($cari) {
+            return view('posts.index', compact('posts','tags'));
+        }else {
+            # code...
+            return redirect('home');
+        }
     }
 }

@@ -32,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('profiles/edit/{id}', [UserController::class, 'edit'])->name('profiles.edit');
     Route::post('profiles/update/{id}', [UserController::class, 'update'])->name('profiles.update');
     Route::get('posts/edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
+    Route::get('posts/cari', [PostController::class, 'cari'])->name('posts.cari');
+
     Route::post('posts/update/{id}', [PostController::class, 'update'])->name('posts.update');
     Route::get('posts/destroy/{id}', [PostController::class, 'destroy'])->name('posts.delete');
     Route::post('comments', [CommentController::class, 'store'])->name('comments.store');

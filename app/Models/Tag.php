@@ -10,7 +10,7 @@ class Tag extends Model
 {
     use HasFactory, SoftDeletes;
     protected $dates = ['deleted_at'];
-    protected $fillable = ['user_id', 'comment_id', 'value'];
+    protected $fillable = ['post_id', 'comment_id', 'value'];
 
     public function comments()
     {
